@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AP Psychology Notes</title>
+  <meta name="description" content="Detailed AP Psychology notes layout with a collapsible table of contents, reading progress, highlights, and glossary.">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/animations.css">
+  <link rel="stylesheet" href="../styles/components.css">
+</head>
+<body data-page="notes" data-root=".." data-home="../index.html" data-pages-root=".">
+  <div id="bg-canvas" aria-hidden="true">
+    <span class="bg-blob bg-blob--1"></span>
+    <span class="bg-blob bg-blob--2"></span>
+    <span class="bg-blob bg-blob--3"></span>
+    <span class="bg-blob bg-blob--4"></span>
+    <span class="bg-blob bg-blob--5"></span>
+    <span class="bg-blob bg-blob--6"></span>
+  </div>
+
+  <div class="reading-progress-shell" aria-hidden="true">
+    <div id="reading-progress" class="progress-fill"></div>
+  </div>
+
+  <header class="topbar neu-flat reveal" data-stagger="0">
+    <a class="brand" href="../index.html" aria-label="Back to AP Psychology home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy">
+        <strong>AP Psych</strong>
+        <span>Notes</span>
+      </span>
+    </a>
+
+    <nav class="study-nav topbar-nav" aria-label="Study modes"></nav>
+
+    <div class="topbar-actions">
+      <button class="icon-button neu-button" type="button" data-modal-open="search-modal" aria-label="Open global search">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10.5 4a6.5 6.5 0 1 0 4.015 11.615l4.435 4.435 1.414-1.414-4.435-4.435A6.5 6.5 0 0 0 10.5 4Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z"></path>
+        </svg>
+      </button>
+      <button id="theme-toggle" class="theme-toggle neu-button" type="button" aria-label="Toggle dark or light theme" aria-pressed="false">
+        <span class="theme-toggle__icon" aria-hidden="true"></span>
+        <span class="theme-toggle__label">Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-shell study-shell">
+    <section class="page-hero reveal" data-stagger="1">
+      <div>
+        <p class="eyebrow">Unit <span data-unit-number>1</span></p>
+        <h1>Study Notes</h1>
+        <p class="hero-subtitle" data-unit-title>Scientific Foundations of Psychology</p>
+      </div>
+      <div class="hero-actions">
+        <button id="toc-toggle" class="ghost-button neu-button" type="button" aria-label="Toggle table of contents">
+          <span class="button-icon--menu" aria-hidden="true"><span></span></span>
+          <span>Contents</span>
+        </button>
+        <button id="highlight-toggle" class="primary-button neu-button" type="button" aria-label="Toggle highlight mode" aria-pressed="false">Highlight Mode Off</button>
+      </div>
+    </section>
+
+    <section class="notes-layout reveal" data-stagger="3">
+      <aside id="notes-sidebar" class="sidebar-panel neu-card" aria-label="Table of contents">
+        <div class="panel-header">
+          <h2>Contents</h2>
+          <p>Auto-generated from study sections.</p>
+        </div>
+        <div id="toc-list" class="toc-list"></div>
+      </aside>
+
+      <div class="notes-main">
+        <article id="notes-content" class="content-panel neu-card" aria-live="polite"></article>
+      </div>
+
+      <aside id="glossary-panel" class="sidebar-panel neu-card glossary-panel" aria-label="Key terms glossary">
+        <div class="panel-header">
+          <h2>Terms in View</h2>
+          <p>Updates from visible term cards.</p>
+        </div>
+        <div id="glossary-list" class="glossary-list"></div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" data-modal="search-modal" hidden>
+    <section class="modal-panel neu-card search-modal" role="dialog" aria-modal="true" aria-labelledby="search-modal-title" tabindex="-1">
+      <div class="modal-header">
+        <div>
+          <p class="section-kicker">Quick Jump</p>
+          <h2 id="search-modal-title">Search Units and Modes</h2>
+        </div>
+        <button class="icon-button neu-button" type="button" data-modal-close aria-label="Close search">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <label class="input-shell">
+        <span class="visually-hidden">Search units and study modes</span>
+        <input id="search-input" class="neu-input" type="search" placeholder="Search by unit name or mode">
+      </label>
+      <div id="search-results" class="search-results" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <script defer src="../scripts/notes.js"></script>
+  <script defer src="../scripts/app.js"></script>
+</body>
+</html>

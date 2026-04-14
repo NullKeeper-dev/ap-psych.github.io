@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AP Psychology</title>
+  <meta name="description" content="A dark-neumorphic AP Psychology study hub for notes, flashcards, quizzes, and FRQ practice.">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/animations.css">
+  <link rel="stylesheet" href="styles/components.css">
+</head>
+<body data-page="home" data-root="." data-home="index.html" data-pages-root="pages">
+  <div id="bg-canvas" aria-hidden="true">
+    <span class="bg-blob bg-blob--1"></span>
+    <span class="bg-blob bg-blob--2"></span>
+    <span class="bg-blob bg-blob--3"></span>
+    <span class="bg-blob bg-blob--4"></span>
+    <span class="bg-blob bg-blob--5"></span>
+    <span class="bg-blob bg-blob--6"></span>
+  </div>
+
+  <header class="topbar neu-flat reveal" data-stagger="0">
+    <a class="brand" href="index.html" aria-label="AP Psychology home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy">
+        <strong>AP Psych</strong>
+        <span>Study system</span>
+      </span>
+    </a>
+
+    <nav class="study-nav topbar-nav" aria-label="Site sections">
+      <a class="is-active" href="index.html" aria-current="page">Home</a>
+      <a href="#unit-grid">Units</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-button neu-button" type="button" data-modal-open="search-modal" aria-label="Open global search">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10.5 4a6.5 6.5 0 1 0 4.015 11.615l4.435 4.435 1.414-1.414-4.435-4.435A6.5 6.5 0 0 0 10.5 4Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z"></path>
+        </svg>
+      </button>
+      <button id="theme-toggle" class="theme-toggle neu-button" type="button" aria-label="Toggle dark or light theme" aria-pressed="false">
+        <span class="theme-toggle__icon" aria-hidden="true"></span>
+        <span class="theme-toggle__label">Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-shell home-shell">
+    <section class="hero-section reveal" data-stagger="1">
+      <div class="hero-copy">
+        <p class="eyebrow">Premium AP Psychology Study Guide</p>
+        <h1>AP Psychology</h1>
+        <p class="hero-subtitle">Master every unit. Ace every exam.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="primary-button neu-button" href="#unit-grid">Browse Units</a>
+        <button class="ghost-button neu-button" type="button" data-modal-open="search-modal" aria-label="Jump to a unit or study mode">Quick Jump</button>
+      </div>
+    </section>
+
+    <section class="unit-section reveal" data-stagger="2">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Units</p>
+          <h2>Choose Your Focus</h2>
+        </div>
+        <p class="section-copy">Select a unit to open notes, flashcards, MCQ practice, or FRQ practice. Study content loads later from generated JSON.</p>
+      </div>
+      <div id="unit-grid" class="unit-grid" aria-label="AP Psychology units"></div>
+    </section>
+  </main>
+
+  <footer class="page-footer reveal" data-stagger="3">
+    <p>&copy; <span id="current-year"></span> AP Psychology Study Shell</p>
+  </footer>
+
+  <div class="modal-backdrop" data-modal="unit-menu" hidden>
+    <section class="modal-panel neu-card" role="dialog" aria-modal="true" aria-labelledby="unit-menu-title" tabindex="-1">
+      <div class="modal-header">
+        <div>
+          <p class="section-kicker">Unit Menu</p>
+          <h2 id="unit-menu-title">Choose a Study Mode</h2>
+        </div>
+        <button class="icon-button neu-button" type="button" data-modal-close aria-label="Close unit menu">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-copy">
+        <p id="unit-menu-subtitle" class="modal-subtitle">Pick how you want to study this unit.</p>
+      </div>
+      <div id="unit-menu-options" class="modal-option-grid"></div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" data-modal="search-modal" hidden>
+    <section class="modal-panel neu-card search-modal" role="dialog" aria-modal="true" aria-labelledby="search-modal-title" tabindex="-1">
+      <div class="modal-header">
+        <div>
+          <p class="section-kicker">Quick Jump</p>
+          <h2 id="search-modal-title">Search Units and Modes</h2>
+        </div>
+        <button class="icon-button neu-button" type="button" data-modal-close aria-label="Close search">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <label class="input-shell">
+        <span class="visually-hidden">Search units and study modes</span>
+        <input id="search-input" class="neu-input" type="search" placeholder="Search by unit name or mode">
+      </label>
+      <div id="search-results" class="search-results" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <script defer src="scripts/app.js"></script>
+</body>
+</html>

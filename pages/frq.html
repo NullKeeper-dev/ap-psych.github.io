@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AP Psychology FRQ Practice</title>
+  <meta name="description" content="AP Psychology FRQ and AAQ practice interface with rubric panel, autosave, and self-check workflow.">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/animations.css">
+  <link rel="stylesheet" href="../styles/components.css">
+</head>
+<body data-page="frq" data-root=".." data-home="../index.html" data-pages-root=".">
+  <div id="bg-canvas" aria-hidden="true">
+    <span class="bg-blob bg-blob--1"></span>
+    <span class="bg-blob bg-blob--2"></span>
+    <span class="bg-blob bg-blob--3"></span>
+    <span class="bg-blob bg-blob--4"></span>
+    <span class="bg-blob bg-blob--5"></span>
+    <span class="bg-blob bg-blob--6"></span>
+  </div>
+
+  <header class="topbar neu-flat reveal" data-stagger="0">
+    <a class="brand" href="../index.html" aria-label="Back to AP Psychology home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy">
+        <strong>AP Psych</strong>
+        <span>FRQ Practice</span>
+      </span>
+    </a>
+
+    <nav class="study-nav topbar-nav" aria-label="Study modes"></nav>
+
+    <div class="topbar-actions">
+      <button class="icon-button neu-button" type="button" data-modal-open="search-modal" aria-label="Open global search">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10.5 4a6.5 6.5 0 1 0 4.015 11.615l4.435 4.435 1.414-1.414-4.435-4.435A6.5 6.5 0 0 0 10.5 4Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z"></path>
+        </svg>
+      </button>
+      <button id="theme-toggle" class="theme-toggle neu-button" type="button" aria-label="Toggle dark or light theme" aria-pressed="false">
+        <span class="theme-toggle__icon" aria-hidden="true"></span>
+        <span class="theme-toggle__label">Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-shell study-shell">
+    <section class="page-hero reveal" data-stagger="1">
+      <div>
+        <p class="eyebrow">Unit <span data-unit-number>1</span></p>
+        <h1>FRQ / AAQ Practice</h1>
+        <p class="hero-subtitle" data-unit-title>Scientific Foundations of Psychology</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-chip neu-flat">
+          <span>Prompts</span>
+          <strong id="frq-count">0</strong>
+        </div>
+        <div class="stat-chip neu-flat">
+          <span>Saved Drafts</span>
+          <strong id="frq-draft-state">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="mode-toggle-strip reveal" data-stagger="3" aria-label="FRQ practice modes">
+      <button class="mode-toggle neu-button is-active" type="button" data-mode-target="frq-practice-mode" aria-label="Open practice mode">Practice</button>
+      <button class="mode-toggle neu-button" type="button" data-mode-target="frq-graded-mode" aria-label="Open graded mode">Graded</button>
+    </section>
+
+    <section id="frq-practice-mode" class="frq-layout mode-panel is-active reveal" data-stagger="4">
+      <div class="frq-main">
+        <article class="prompt-card neu-card">
+          <div class="prompt-card__header">
+            <div>
+              <p class="section-kicker">Prompt</p>
+              <h2 id="frq-prompt-title">FRQ Prompt</h2>
+            </div>
+            <span id="frq-points" class="points-badge">0 points</span>
+          </div>
+          <div id="frq-prompt" class="prompt-box">Prompt content will populate here when FRQ JSON data is available.</div>
+        </article>
+
+        <section class="response-card neu-card">
+          <div class="panel-header">
+            <h2>Your Response</h2>
+            <p>Drafts auto-save to localStorage.</p>
+          </div>
+          <label class="input-shell">
+            <span class="visually-hidden">Write your FRQ response</span>
+            <textarea id="frq-response" class="neu-input frq-response" rows="14" placeholder="Write your response here"></textarea>
+          </label>
+          <div class="response-meta">
+            <span id="frq-word-count">0 words</span>
+            <div class="response-actions">
+              <button id="submit-frq" class="primary-button neu-button" type="button" aria-label="Submit FRQ response for self-check">Submit</button>
+              <button id="clear-frq" class="ghost-button neu-button" type="button" aria-label="Clear FRQ draft">Clear Draft</button>
+            </div>
+          </div>
+          <div id="frq-self-check" class="self-check-panel" hidden></div>
+        </section>
+      </div>
+
+      <aside class="frq-sidebar">
+        <section class="sidebar-panel neu-card">
+          <div class="panel-header">
+            <h2>Rubric</h2>
+            <button id="rubric-toggle" class="ghost-button neu-button" type="button" aria-label="Toggle rubric panel">Collapse</button>
+          </div>
+          <div id="rubric-list" class="rubric-list"></div>
+        </section>
+
+        <section class="sidebar-panel neu-card">
+          <div class="panel-header">
+            <h2>College Board AAQ Guide</h2>
+            <p>Reference structure for standard AP Psych FRQs.</p>
+          </div>
+          <div class="guide-steps">
+            <div class="guide-step">
+              <strong>(A) Identify / Define</strong>
+              <p>State or define the concept the prompt asks you to use.</p>
+            </div>
+            <div class="guide-step">
+              <strong>(B) Apply</strong>
+              <p>Apply the concept directly to the scenario, person, or evidence in the prompt.</p>
+            </div>
+            <div class="guide-step">
+              <strong>(C) Explain the Connection</strong>
+              <p>Explain how the concept supports your application or why it leads to the stated outcome.</p>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </section>
+
+    <section id="frq-graded-mode" class="mode-panel reveal" data-stagger="5">
+      <div class="placeholder-panel neu-card">
+        <div class="panel-header">
+          <h2>Graded Mode</h2>
+          <p>AI-assisted grading stub.</p>
+        </div>
+        <div class="todo-box">
+          <strong>TODO</strong>
+          <p>Wire this panel to an external grading workflow once prompts, rubrics, and model evaluation logic are available.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" data-modal="search-modal" hidden>
+    <section class="modal-panel neu-card search-modal" role="dialog" aria-modal="true" aria-labelledby="search-modal-title" tabindex="-1">
+      <div class="modal-header">
+        <div>
+          <p class="section-kicker">Quick Jump</p>
+          <h2 id="search-modal-title">Search Units and Modes</h2>
+        </div>
+        <button class="icon-button neu-button" type="button" data-modal-close aria-label="Close search">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <label class="input-shell">
+        <span class="visually-hidden">Search units and study modes</span>
+        <input id="search-input" class="neu-input" type="search" placeholder="Search by unit name or mode">
+      </label>
+      <div id="search-results" class="search-results" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <script defer src="../scripts/frq.js"></script>
+  <script defer src="../scripts/app.js"></script>
+</body>
+</html>

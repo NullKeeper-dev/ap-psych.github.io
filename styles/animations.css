@@ -1,0 +1,207 @@
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes blob-drift-a {
+  0% {
+    transform: translate3d(-4%, -2%, 0) scale(0.96);
+  }
+
+  50% {
+    transform: translate3d(5%, 3%, 0) scale(1.04);
+  }
+
+  100% {
+    transform: translate3d(-2%, 6%, 0) scale(0.99);
+  }
+}
+
+@keyframes blob-drift-b {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(-6%, 8%, 0) scale(0.92);
+  }
+}
+
+@keyframes blob-drift-c {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.96);
+  }
+
+  100% {
+    transform: translate3d(7%, 5%, 0) scale(1.08);
+  }
+}
+
+@keyframes blob-breathe {
+  0%,
+  100% {
+    opacity: 0.28;
+  }
+
+  50% {
+    opacity: 0.58;
+  }
+}
+
+@keyframes correct-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(94, 215, 164, 0);
+  }
+
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(94, 215, 164, 0.22);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(94, 215, 164, 0);
+  }
+}
+
+@keyframes wrong-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-6px);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+
+  75% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes progress-shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes modal-backdrop-in {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+
+  to {
+    opacity: 1;
+    backdrop-filter: blur(12px);
+  }
+}
+
+@keyframes modal-backdrop-out {
+  from {
+    opacity: 1;
+    backdrop-filter: blur(12px);
+  }
+
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes modal-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+
+.reveal,
+.reveal.is-visible {
+  opacity: 1;
+  animation: none;
+}
+
+.modal-backdrop.is-open {
+  animation: modal-backdrop-in 0.24s ease forwards;
+}
+
+.modal-backdrop.is-open .modal-panel {
+  animation: modal-in 0.24s ease forwards;
+}
+
+.modal-backdrop.is-closing {
+  animation: modal-backdrop-out 0.22s ease forwards;
+}
+
+.modal-backdrop.is-closing .modal-panel {
+  animation: modal-out 0.22s ease forwards;
+}
+
+.answer-choice.is-correct {
+  animation: correct-pulse 0.6s ease;
+}
+
+.answer-choice.is-incorrect {
+  animation: wrong-shake 0.45s ease;
+}
+
+.answer-choice.is-muted {
+  opacity: 0.48;
+}
+
+.flashcard-card__inner {
+  transition: transform 240ms ease;
+  transform-style: preserve-3d;
+}
+
+.flashcard-card.is-flipped .flashcard-card__inner {
+  transform: rotateY(180deg);
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AP Psychology MCQ Practice</title>
+  <meta name="description" content="AP Psychology multiple-choice practice interface with quiz configuration, progress tracking, and review mode.">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/animations.css">
+  <link rel="stylesheet" href="../styles/components.css">
+</head>
+<body data-page="mcq" data-root=".." data-home="../index.html" data-pages-root=".">
+  <div id="bg-canvas" aria-hidden="true">
+    <span class="bg-blob bg-blob--1"></span>
+    <span class="bg-blob bg-blob--2"></span>
+    <span class="bg-blob bg-blob--3"></span>
+    <span class="bg-blob bg-blob--4"></span>
+    <span class="bg-blob bg-blob--5"></span>
+    <span class="bg-blob bg-blob--6"></span>
+  </div>
+
+  <header class="topbar neu-flat reveal" data-stagger="0">
+    <a class="brand" href="../index.html" aria-label="Back to AP Psychology home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy">
+        <strong>AP Psych</strong>
+        <span>MCQ Practice</span>
+      </span>
+    </a>
+
+    <nav class="study-nav topbar-nav" aria-label="Study modes"></nav>
+
+    <div class="topbar-actions">
+      <button class="icon-button neu-button" type="button" data-modal-open="search-modal" aria-label="Open global search">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10.5 4a6.5 6.5 0 1 0 4.015 11.615l4.435 4.435 1.414-1.414-4.435-4.435A6.5 6.5 0 0 0 10.5 4Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z"></path>
+        </svg>
+      </button>
+      <button id="theme-toggle" class="theme-toggle neu-button" type="button" aria-label="Toggle dark or light theme" aria-pressed="false">
+        <span class="theme-toggle__icon" aria-hidden="true"></span>
+        <span class="theme-toggle__label">Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-shell study-shell">
+    <section class="page-hero reveal" data-stagger="1">
+      <div>
+        <p class="eyebrow">Unit <span data-unit-number>1</span></p>
+        <h1>MCQ Practice</h1>
+        <p class="hero-subtitle" data-unit-title>Scientific Foundations of Psychology</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-chip neu-flat">
+          <span>History</span>
+          <strong id="mcq-history-count">0 quizzes</strong>
+        </div>
+        <div class="stat-chip neu-flat">
+          <span>Best Score</span>
+          <strong id="mcq-best-score">0%</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="mcq-shell reveal" data-stagger="3">
+      <section id="quiz-config" class="config-panel neu-card">
+        <div class="panel-header">
+          <h2>Quiz Setup</h2>
+          <p>Choose how many questions, whether to enable the timer, and which topic to target.</p>
+        </div>
+
+        <div class="config-grid">
+          <fieldset class="config-group">
+            <legend>Question Count</legend>
+            <label class="choice-pill neu-flat"><input type="radio" name="question-count" value="10" checked>10</label>
+            <label class="choice-pill neu-flat"><input type="radio" name="question-count" value="20">20</label>
+            <label class="choice-pill neu-flat"><input type="radio" name="question-count" value="40">40</label>
+            <label class="choice-pill neu-flat"><input type="radio" name="question-count" value="all">All</label>
+          </fieldset>
+
+          <div class="config-group">
+            <label class="toggle-row" for="timed-mode">
+              <span>Timed Mode</span>
+              <input id="timed-mode" type="checkbox" aria-label="Enable timed mode at 45 seconds per question">
+            </label>
+            <p class="config-help">45 seconds per question.</p>
+          </div>
+
+          <div class="config-group">
+            <label for="topic-filter">Topic Filter</label>
+            <select id="topic-filter" class="neu-input" aria-label="Select a topic filter">
+              <option value="all">All topics</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="start-quiz" class="primary-button neu-button" type="button" aria-label="Start quiz">Start Quiz</button>
+      </section>
+
+      <section id="quiz-active" class="quiz-panel neu-card" hidden>
+        <div class="quiz-meta">
+          <div class="progress-shell">
+            <div id="quiz-progress" class="progress-fill"></div>
+          </div>
+          <div class="quiz-meta__row">
+            <strong id="quiz-counter">0 / 0</strong>
+            <span id="quiz-timer" class="timer-badge">Timer Off</span>
+          </div>
+        </div>
+
+        <article class="question-card">
+          <h2 id="question-text">Question text will appear here.</h2>
+          <div id="answer-choices" class="answer-choice-list"></div>
+          <div id="answer-feedback" class="answer-feedback" aria-live="polite"></div>
+        </article>
+
+        <div class="quiz-actions">
+          <button id="next-question" class="primary-button neu-button" type="button" aria-label="Go to next question" hidden>Next Question</button>
+        </div>
+      </section>
+
+      <section id="quiz-results" class="results-panel neu-card" hidden>
+        <div class="panel-header">
+          <h2>Results</h2>
+          <p>Your completed quiz summary and review tools.</p>
+        </div>
+
+        <div class="results-hero">
+          <div class="score-gauge">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="score-gauge__track" cx="60" cy="60" r="48"></circle>
+              <circle id="score-gauge-fill" class="score-gauge__fill" cx="60" cy="60" r="48"></circle>
+            </svg>
+            <div class="score-gauge__value">
+              <strong id="quiz-score">0%</strong>
+              <span id="quiz-score-detail">0 / 0 correct</span>
+            </div>
+          </div>
+
+          <div class="results-summary">
+            <div class="stat-chip neu-flat">
+              <span>Topic Breakdown</span>
+              <strong id="results-topic-count">0 topics</strong>
+            </div>
+            <div class="stat-chip neu-flat">
+              <span>Missed</span>
+              <strong id="results-missed-count">0 questions</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-columns">
+          <div>
+            <h3>Breakdown by Topic</h3>
+            <div id="topic-breakdown" class="breakdown-list"></div>
+          </div>
+          <div>
+            <h3>Missed Questions</h3>
+            <div id="missed-questions" class="missed-list"></div>
+          </div>
+        </div>
+
+        <div class="results-actions">
+          <button id="review-missed" class="primary-button neu-button" type="button" aria-label="Review missed questions">Review Missed</button>
+          <button id="restart-quiz" class="ghost-button neu-button" type="button" aria-label="Return to quiz setup">New Quiz</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" data-modal="search-modal" hidden>
+    <section class="modal-panel neu-card search-modal" role="dialog" aria-modal="true" aria-labelledby="search-modal-title" tabindex="-1">
+      <div class="modal-header">
+        <div>
+          <p class="section-kicker">Quick Jump</p>
+          <h2 id="search-modal-title">Search Units and Modes</h2>
+        </div>
+        <button class="icon-button neu-button" type="button" data-modal-close aria-label="Close search">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <label class="input-shell">
+        <span class="visually-hidden">Search units and study modes</span>
+        <input id="search-input" class="neu-input" type="search" placeholder="Search by unit name or mode">
+      </label>
+      <div id="search-results" class="search-results" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <script defer src="../scripts/mcq.js"></script>
+  <script defer src="../scripts/app.js"></script>
+</body>
+</html>
